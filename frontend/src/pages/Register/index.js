@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { FiArrowDownLeft } from 'react-icons/fi'
 
 import api from '../../services/api'
@@ -13,6 +13,8 @@ export default function Register(){
     const [city,  setCity] = useState('');
     const [uf,  setUf] = useState('');
 
+    const history = useHistory()
+
     async function hadleRegister (e){
         e.preventDefault();
 
@@ -25,8 +27,9 @@ export default function Register(){
         }
 
         try {
-            const response = await api.post('ongs', data)
-            alert(`Seu ID de acesso é ${response.data.id} `)
+            const response = await api.post('ongs', data);
+            alert(`Seu ID de acesso é ${response.data.id} `);
+            history.push('/');
         }catch(err){
             console.log(err)
             alert('Não foi possível realizar o cadastro')

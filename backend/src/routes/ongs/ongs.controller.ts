@@ -10,7 +10,6 @@ export class OngsController {
         return this.conection.getAllOngs()
     }
     @Post()
-    @Header('Access-Control-Allow-Origin', '*')
     creatOng(@Body() ong: any) {
         return this.conection.createOng(ong);
     }

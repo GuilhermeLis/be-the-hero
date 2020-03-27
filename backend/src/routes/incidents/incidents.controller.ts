@@ -23,6 +23,7 @@ export class IncidentsController {
 
     @Delete(':id')
     async delete(@Param('id') param, @Headers('authorization') header, @Res() res: Response){
+        console.log(header)
         const response = await this.connection.canDelete(param, header)
         if(response){return res.status(401).json({error: 'Operation not permitted'})}
         this.connection.delete(param)
