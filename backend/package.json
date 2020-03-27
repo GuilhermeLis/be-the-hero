@@ -23,6 +23,7 @@
     "@nestjs/common": "^6.10.14",
     "@nestjs/core": "^6.10.14",
     "@nestjs/platform-express": "^6.10.14",
+    "helmet": "^3.22.0",
     "knex": "^0.20.13",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",

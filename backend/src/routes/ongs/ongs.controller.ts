@@ -1,4 +1,4 @@
-import { Controller, Get, Body, Post } from '@nestjs/common';
+import { Controller, Get, Body, Post, Header } from '@nestjs/common';
 
 import { BancoConnectionService } from '../../service/banco-conection/banco-connection.service';
 
@@ -10,6 +10,7 @@ export class OngsController {
         return this.conection.getAllOngs()
     }
     @Post()
+    @Header('Access-Control-Allow-Origin', '*')
     creatOng(@Body() ong: any) {
         return this.conection.createOng(ong);
     }
