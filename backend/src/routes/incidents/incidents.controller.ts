@@ -1,7 +1,9 @@
-import { Controller, Post, Body, Headers, Get, Delete, Param, Res, Query, Header } from '@nestjs/common';
+import { Controller, Post, Body, Headers, Get, Delete, Param, Res, Query} from '@nestjs/common';
 import { Response } from 'express';
 
 import { BancoConnectionService } from '../../service/banco-conection/banco-connection.service';
+
+import { CreatIncidentDto } from '../../dto/creat-incident-dto/creat-incident-dto';
 
 @Controller('incidents')
 export class IncidentsController {
@@ -17,7 +19,7 @@ export class IncidentsController {
     }
 
     @Post()
-    create(@Body() incident: any, @Headers('authorization') header ){
+    create(@Body() incident: CreatIncidentDto, @Headers('authorization') header ){
         return this.connection.createIncident(incident,header);
     }
 

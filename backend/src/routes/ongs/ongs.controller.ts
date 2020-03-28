@@ -1,4 +1,5 @@
-import { Controller, Get, Body, Post, Header } from '@nestjs/common';
+import { Controller, Get, Body, Post } from '@nestjs/common';
+import { CreatOngDto } from '../../dto/creat-ong-dto/creat-ong-dto';
 
 import { BancoConnectionService } from '../../service/banco-conection/banco-connection.service';
 
@@ -10,7 +11,7 @@ export class OngsController {
         return this.conection.getAllOngs()
     }
     @Post()
-    creatOng(@Body() ong: any) {
+    creatOng(@Body() ong: CreatOngDto) {
         return this.conection.createOng(ong);
     }
 }
