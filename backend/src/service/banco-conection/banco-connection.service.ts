@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import { Injectable, BadRequestException } from '@nestjs/common';
 import * as crypto from "crypto";
 import { connection } from '../../database/config/connection.config';
@@ -40,7 +41,8 @@ export class BancoConnectionService {
         await connection('incidents').where('id', id).delete();
     }
 
-    async createIncident(incident: any, ong_id: any){
+    async createIncident(incident: any, ong_id: string){
+        if(!ong_id){ throw new BadRequestException({status: 400 ,error: "The header should not be empity"})}
         const { title, description, value } = incident;
 
         const [id] = await connection('incidents').insert({

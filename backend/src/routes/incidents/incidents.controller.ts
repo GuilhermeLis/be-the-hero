@@ -4,6 +4,7 @@ import { Response } from 'express';
 import { BancoConnectionService } from '../../service/banco-conection/banco-connection.service';
 
 import { CreatIncidentDto } from '../../dto/creat-incident-dto/creat-incident-dto';
+import { DeleteIncidentDto } from 'src/dto/delete-incident-dto/delete-incident-dto';
 
 @Controller('incidents')
 export class IncidentsController {
@@ -19,13 +20,12 @@ export class IncidentsController {
     }
 
     @Post()
-    create(@Body() incident: CreatIncidentDto, @Headers('authorization') header ){
+    create(@Body() incident: CreatIncidentDto, @Headers('authorization') header: string ){
         return this.connection.createIncident(incident,header);
     }
 
     @Delete(':id')
-    async delete(@Param('id') param, @Headers('authorization') header, @Res() res: Response){
-        console.log(header)
+    async delete(@Param('id') param:DeleteIncidentDto, @Headers('authorization') header: string, @Res() res: Response){
         const response = await this.connection.canDelete(param, header)
         if(response){return res.status(401).json({error: 'Operation not permitted'})}
         this.connection.delete(param)
